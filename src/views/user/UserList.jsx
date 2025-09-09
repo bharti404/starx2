@@ -169,7 +169,7 @@ const UserList = () => {
         const data = await response.json();
 
         if (response.ok) {
-          setUsers(data|| []);
+          setUsers(data.result|| []);
           console.log("user" , data)
         } else {
           setError(data.message || 'Failed to fetch users');
