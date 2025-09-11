@@ -397,7 +397,7 @@ export const routes = [
       {
         path: '*',
         exact: 'true',
-       element: () => <Navigate to="/auth/signin-1" replace />
+        element: () => <Navigate to="/auth/signin-1" replace />
       }
     ]
   }
