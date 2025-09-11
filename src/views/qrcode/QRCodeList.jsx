@@ -222,6 +222,17 @@ import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 
+const initialProductsData = [
+  { id: 1, name: 'Product 1' },
+  { id: 2, name: 'Product 2' },
+  { id: 3, name: 'Product 3' },
+  { id: 4, name: 'Product 4' },
+  { id: 5, name: 'Product 5' },
+  { id: 6, name: 'Product 6' },
+  { id: 7, name: 'Product 7' },
+  { id: 8, name: 'Product 8' }
+];
+
 const QRCodeList = () => {
   const [showModal, setShowModal] = useState(false);
 
@@ -254,16 +265,6 @@ const QRCodeList = () => {
   ];
 
   // --- fallback static list for dropdown (kept so nothing is removed) ---
-  const initialProductsData = [
-    { id: 1, name: 'Product 1' },
-    { id: 2, name: 'Product 2' },
-    { id: 3, name: 'Product 3' },
-    { id: 4, name: 'Product 4' },
-    { id: 5, name: 'Product 5' },
-    { id: 6, name: 'Product 6' },
-    { id: 7, name: 'Product 7' },
-    { id: 8, name: 'Product 8' }
-  ];
 
   const [productsData, setProductsData] = useState(initialProductsData);
   const [selectedProduct, setSelectedProduct] = useState('');
@@ -275,7 +276,7 @@ const QRCodeList = () => {
 
   const navigate = useNavigate();
 
-  // Fetch real products for dropdown (keeps fallback if fetch fails)
+  //eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     const fetchProducts = async () => {
       const token = Cookies.get('token');
@@ -320,7 +321,7 @@ const QRCodeList = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
 
     fetchProducts();
-  }, [navigate]); // keep navigate in deps as you had
+  }, [navigate]); //<- ESLint says "missing dependency: initialProductsData"
 
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => {
