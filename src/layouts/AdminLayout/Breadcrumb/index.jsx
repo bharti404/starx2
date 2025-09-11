@@ -29,7 +29,7 @@ const Breadcrumb = () => {
         if (collapse.type === 'collapse') {
           getCollapse(collapse);
         } else if (collapse.type && collapse.type === 'item') {
-          if (location.pathname === import.meta.env.VITE_APP_BASE_NAME + collapse.url) {
+          if (location.pathname === (process.env.REACT_APP_BASE_NAME || '/') + collapse.url) {
             setMain(item);
             setItem(collapse);
           }

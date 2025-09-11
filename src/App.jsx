@@ -7,7 +7,7 @@ import renderRoutes, { routes } from './routes';
 // ==============================|| APP ||============================== //
 
 const App = () => {
-  return <BrowserRouter basename={import.meta.env.VITE_APP_BASE_NAME}>{renderRoutes(routes)}</BrowserRouter>;
+  return <BrowserRouter basename={process.env.REACT_APP_BASE_NAME || '/'}>{renderRoutes(routes)}</BrowserRouter>;
 };
 
 export default App;

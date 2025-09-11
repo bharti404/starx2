@@ -7,7 +7,6 @@
 //     // ... users data from above
 //   ];
 
-
 //   const userData={
 //   "users": [
 //     {
@@ -109,7 +108,7 @@
 //                   })}
 //                 </td>
 //                  <td className='text-end text-primary'>
-//                      <Link 
+//                      <Link
 //                     to={`/app/user/${user.id}`}
 //                     className="btn btn-sm btn-outline-primary"
 //                   >
@@ -126,7 +125,6 @@
 // };
 
 // export default UserList;
-
 
 import React, { useEffect, useState } from 'react';
 import { Table, Container } from 'react-bootstrap';
@@ -153,11 +151,11 @@ const UserList = () => {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
+            Authorization: `Bearer ${token}`,
             'Cache-Control': 'no-cache',
-    'Pragma': 'no-cache',
-    'Expires': '0',
-          },
+            Pragma: 'no-cache',
+            Expires: '0'
+          }
         });
 
         if (response.status === 401) {
@@ -169,8 +167,8 @@ const UserList = () => {
         const data = await response.json();
 
         if (response.ok) {
-          setUsers(data.result|| []);
-          console.log("user" , data)
+          setUsers(data.result || []);
+          console.log('user', data);
         } else {
           setError(data.message || 'Failed to fetch users');
         }
@@ -206,14 +204,9 @@ const UserList = () => {
                 <td className="fw-bold">{user.name}</td>
                 <td>{user.email}</td>
                 <td>{user.phone}</td>
-                <td className="text-end fw-bold">
-                  404
-                </td>
+                <td className="text-end fw-bold">404</td>
                 <td className="text-end">
-                  <Link 
-                    to={`/app/user/${user.id}`} 
-                    className="btn btn-sm btn-outline-primary"
-                  >
+                  <Link to={`/app/user/${user.id}`} className="btn btn-sm btn-outline-primary">
                     View
                   </Link>
                 </td>

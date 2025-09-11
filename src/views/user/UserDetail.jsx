@@ -4,58 +4,58 @@ import { useParams, Link } from 'react-router-dom';
 
 const UserDetail = () => {
   const { userId } = useParams();
-  
+
   // Sample user data - in real app, you'd fetch this from API
   const userData = {
-    "users": [
+    users: [
       {
-        "id": 1,
-        "name": "John Doe",
-        "email": "john.doe@email.com",
-        "phone": "+1 (555) 123-4567",
-        "walletBalance": 1250.50,
-        "status": "Active",
-        "joinedDate": "2024-01-15",
-        "lastLogin": "2024-03-10",
-        "totalTransactions": 45
+        id: 1,
+        name: 'John Doe',
+        email: 'john.doe@email.com',
+        phone: '+1 (555) 123-4567',
+        walletBalance: 1250.5,
+        status: 'Active',
+        joinedDate: '2024-01-15',
+        lastLogin: '2024-03-10',
+        totalTransactions: 45
       },
       {
-        "id": 2,
-        "name": "Jane Smith",
-        "email": "jane.smith@email.com",
-        "phone": "+1 (555) 987-6543",
-        "walletBalance": 875.25,
-        "status": "Active",
-        "joinedDate": "2024-02-10",
-        "lastLogin": "2024-03-09",
-        "totalTransactions": 32
+        id: 2,
+        name: 'Jane Smith',
+        email: 'jane.smith@email.com',
+        phone: '+1 (555) 987-6543',
+        walletBalance: 875.25,
+        status: 'Active',
+        joinedDate: '2024-02-10',
+        lastLogin: '2024-03-09',
+        totalTransactions: 32
       },
       {
-        "id": 3,
-        "name": "Mike Johnson",
-        "email": "mike.j@email.com",
-        "phone": "+1 (555) 456-7890",
-        "walletBalance": 2100.75,
-        "status": "Inactive",
-        "joinedDate": "2024-01-20",
-        "lastLogin": "2024-02-28",
-        "totalTransactions": 67
+        id: 3,
+        name: 'Mike Johnson',
+        email: 'mike.j@email.com',
+        phone: '+1 (555) 456-7890',
+        walletBalance: 2100.75,
+        status: 'Inactive',
+        joinedDate: '2024-01-20',
+        lastLogin: '2024-02-28',
+        totalTransactions: 67
       },
       {
-        "id": 4,
-        "name": "Sarah Wilson",
-        "email": "sarah.wilson@email.com",
-        "phone": "+1 (555) 234-5678",
-        "walletBalance": 450.00,
-        "status": "Active",
-        "joinedDate": "2024-03-01",
-        "lastLogin": "2024-03-10",
-        "totalTransactions": 18
+        id: 4,
+        name: 'Sarah Wilson',
+        email: 'sarah.wilson@email.com',
+        phone: '+1 (555) 234-5678',
+        walletBalance: 450.0,
+        status: 'Active',
+        joinedDate: '2024-03-01',
+        lastLogin: '2024-03-10',
+        totalTransactions: 18
       }
     ]
   };
 
-  const user = userData.users.find(u => u.id === parseInt(userId));
+  const user = userData.users.find((u) => u.id === parseInt(userId));
 
   if (!user) {
     return (
@@ -88,18 +88,29 @@ const UserDetail = () => {
             <Card.Body>
               <Row>
                 <Col md={6}>
-                  <p><strong>Email:</strong> {user.email}</p>
-                  <p><strong>Phone:</strong> {user.phone}</p>
-                  <p><strong>Status:</strong> 
+                  <p>
+                    <strong>Email:</strong> {user.email}
+                  </p>
+                  <p>
+                    <strong>Phone:</strong> {user.phone}
+                  </p>
+                  <p>
+                    <strong>Status:</strong>
                     <Badge bg={user.status === 'Active' ? 'success' : 'secondary'} className="ms-2">
                       {user.status}
                     </Badge>
                   </p>
                 </Col>
                 <Col md={6}>
-                  <p><strong>Joined Date:</strong> {user.joinedDate}</p>
-                  <p><strong>Last Login:</strong> {user.lastLogin}</p>
-                  <p><strong>Total Transactions:</strong> {user.totalTransactions}</p>
+                  <p>
+                    <strong>Joined Date:</strong> {user.joinedDate}
+                  </p>
+                  <p>
+                    <strong>Last Login:</strong> {user.lastLogin}
+                  </p>
+                  <p>
+                    <strong>Total Transactions:</strong> {user.totalTransactions}
+                  </p>
                 </Col>
               </Row>
             </Card.Body>
@@ -112,7 +123,8 @@ const UserDetail = () => {
             <Card.Body>
               <div className="text-center">
                 <h3 className="text-primary">
-                  ${user.walletBalance.toLocaleString('en-US', {
+                  $
+                  {user.walletBalance.toLocaleString('en-US', {
                     minimumFractionDigits: 2,
                     maximumFractionDigits: 2
                   })}
@@ -130,7 +142,6 @@ const UserDetail = () => {
             </Card.Header>
             <Card.Body>
               <div className="d-grid gap-2">
-                
                 <button className="btn btn-outline-danger">Deactivate User</button>
               </div>
             </Card.Body>

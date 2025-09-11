@@ -106,10 +106,7 @@
 
 // export default renderRoutes;
 
-
-
-//seconnd round of 
-
+//seconnd round of
 
 // import React, { Suspense, Fragment, lazy } from 'react';
 // import { Routes, Navigate, Route } from 'react-router-dom';
@@ -118,8 +115,6 @@
 // import Loader from './components/Loader/Loader';
 // import AdminLayout from './layouts/AdminLayout';
 // import ProtectedRoute from 'components/protectedRoute/ProtectedRoute';
-
-
 
 // import { BASE_URL } from './config/constant';
 
@@ -185,7 +180,7 @@
 //         path: '/app/user/analytics',
 //         element: lazy(() => import('./views/user/UserList'))
 //       },
-      
+
 // {
 //   exact: 'true',
 //   path: '/app/user/:userId',
@@ -248,8 +243,6 @@
 
 // export default renderRoutes;
 
-
-
 import React, { Suspense, Fragment, lazy } from 'react';
 import { Routes, Navigate, Route } from 'react-router-dom';
 
@@ -278,11 +271,11 @@ const renderRoutes = (routes = []) => (
               <Guard>
                 <Layout>
                   {route.protected ? (
-                    <ProtectedRoute>
-                      {route.routes ? renderRoutes(route.routes) : <Element props={true} />}
-                    </ProtectedRoute>
+                    <ProtectedRoute>{route.routes ? renderRoutes(route.routes) : <Element props={true} />}</ProtectedRoute>
+                  ) : route.routes ? (
+                    renderRoutes(route.routes)
                   ) : (
-                    route.routes ? renderRoutes(route.routes) : <Element props={true} />
+                    <Element props={true} />
                   )}
                 </Layout>
               </Guard>

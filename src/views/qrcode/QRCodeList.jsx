@@ -1,11 +1,10 @@
 // import { Table, Container, Row, Col ,Button ,Modal,Form } from 'react-bootstrap';
 // import { useState } from 'react';
 
-
 // const QRCodeList = () => {
 
 //   const [showModal, setShowModal] = useState(false);
-  
+
 //   const [selectedProduct, setSelectedProduct] = useState('');
 //   const [amount, setAmount] = useState('');
 //   const [totalQr, setTotalQr] = useState('');
@@ -18,17 +17,15 @@
 //     setTotalQr('');
 //   };
 
-
 //    const handleSubmit = (e) => {
 //     e.preventDefault();
-    
 
 //     console.log('Submitted:', {
 //       product: selectedProduct,
 //       amount,
 //       totalQr
 //     });
-    
+
 //     handleCloseModal();
 //   };
 //   // Sample data
@@ -70,7 +67,6 @@
 //   { id: 8, name: 'Product 8' }
 // ];
 
-
 //   return (
 //     <Container className="my-4">
 
@@ -102,7 +98,7 @@
 //                 {products.map((product, index) => (
 //                   <tr key={index}>
 //                     <td className="fw-bold">{product.name}</td>
-                    
+
 //                     {/* QR 10 */}
 //                     <td className="text-center">
 //                       <div className="d-flex flex-column gap-1">
@@ -111,7 +107,7 @@
 //                         <span className="text-primary fw-bold">Remain: {product.qr10.remain}</span>
 //                       </div>
 //                     </td>
-                    
+
 //                     {/* QR 20 */}
 //                     <td className="text-center">
 //                       <div className="d-flex flex-column gap-1">
@@ -120,7 +116,7 @@
 //                         <span className="text-primary fw-bold">Remain: {product.qr20.remain}</span>
 //                       </div>
 //                     </td>
-                    
+
 //                     {/* QR 30 */}
 //                     <td className="text-center">
 //                       <div className="d-flex flex-column gap-1">
@@ -129,7 +125,7 @@
 //                         <span className="text-primary fw-bold">Remain: {product.qr30.remain}</span>
 //                       </div>
 //                     </td>
-                    
+
 //                     {/* QR 40 */}
 //                     <td className="text-center">
 //                       <div className="d-flex flex-column gap-1">
@@ -138,7 +134,7 @@
 //                         <span className="text-primary fw-bold">Remain: {product.qr40.remain}</span>
 //                       </div>
 //                     </td>
-                    
+
 //                     {/* QR 50 */}
 //                     <td className="text-center">
 //                       <div className="d-flex flex-column gap-1">
@@ -155,7 +151,6 @@
 //         </Col>
 //       </Row>
 
-
 //       <Modal show={showModal} onHide={handleCloseModal} centered>
 //         <Modal.Header closeButton>
 //           <Modal.Title>Add New QR Codes</Modal.Title>
@@ -164,8 +159,8 @@
 //           <Modal.Body>
 //             <Form.Group className="mb-3">
 //               <Form.Label>Select Product</Form.Label>
-//               <Form.Select 
-//                 value={selectedProduct} 
+//               <Form.Select
+//                 value={selectedProduct}
 //                 onChange={(e) => setSelectedProduct(e.target.value)}
 //                 required
 //               >
@@ -177,11 +172,11 @@
 //                 ))}
 //               </Form.Select>
 //             </Form.Group>
-            
+
 //             <Form.Group className="mb-3">
 //               <Form.Label>QR Code Amount</Form.Label>
-//               <Form.Select 
-//                 value={amount} 
+//               <Form.Select
+//                 value={amount}
 //                 onChange={(e) => setAmount(e.target.value)}
 //                 required
 //               >
@@ -193,11 +188,11 @@
 //                 <option value="50">50</option>
 //               </Form.Select>
 //             </Form.Group>
-            
+
 //             <Form.Group className="mb-3">
 //               <Form.Label>Total Number of QR Codes</Form.Label>
-//               <Form.Control 
-//                 type="number" 
+//               <Form.Control
+//                 type="number"
 //                 value={totalQr}
 //                 onChange={(e) => setTotalQr(e.target.value)}
 //                 min="1"
@@ -296,8 +291,8 @@ const QRCodeList = () => {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${token}`,
-          },
+            Authorization: `Bearer ${token}`
+          }
         });
 
         if (response.status === 401) {
@@ -321,6 +316,8 @@ const QRCodeList = () => {
         setLoading(false);
       }
     };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
 
     fetchProducts();
   }, [navigate]); // keep navigate in deps as you had
@@ -347,7 +344,7 @@ const QRCodeList = () => {
     const payload = {
       amount: amount,
       count: totalQr,
-      productId: selectedProduct,
+      productId: selectedProduct
     };
 
     try {
@@ -355,9 +352,9 @@ const QRCodeList = () => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
+          Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(payload)
       });
 
       if (response.status === 401) {
@@ -383,7 +380,6 @@ const QRCodeList = () => {
 
   return (
     <Container className="my-4">
-
       <Row className="mb-4">
         <Col>
           <h2 className="text-primary">QR Code Management</h2>
@@ -480,11 +476,7 @@ const QRCodeList = () => {
           <Modal.Body>
             <Form.Group className="mb-3">
               <Form.Label>Select Product</Form.Label>
-              <Form.Select
-                value={selectedProduct}
-                onChange={(e) => setSelectedProduct(e.target.value)}
-                required
-              >
+              <Form.Select value={selectedProduct} onChange={(e) => setSelectedProduct(e.target.value)} required>
                 <option value="">Choose a product...</option>
                 {productsData.map((product) => (
                   // support both server (_id) and fallback (id)

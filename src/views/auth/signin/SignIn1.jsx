@@ -69,44 +69,43 @@
 
 // export default Signin1;
 
-
-import React, { useState } from "react";
-import { Form, Button, Container, Row, Col, Alert } from "react-bootstrap";
-import Cookies from "js-cookie";
+import React, { useState } from 'react';
+import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
+import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 
 const SignIn1 = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError("");
+    setError('');
 
     try {
       // Example API call (replace with your API endpoint)
-      const response = await fetch("https://starx-backend.onrender.com/api/admin/login", {
-        method: "POST",
+      const response = await fetch('https://starx-backend.onrender.com/api/admin/login', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ email, password })
       });
 
       const data = await response.json();
 
       if (response.ok) {
         // Save token in cookies
-        Cookies.set("token", data.token, { expires: 7 }); // expires in 7 days
-       
+        Cookies.set('token', data.token, { expires: 7 }); // expires in 7 days
+
         navigate('/app/dashboard/analytics', { replace: true });
       } else {
-        setError(data.message || "Invalid credentials");
+        setError(data.message || 'Invalid credentials');
       }
     } catch (err) {
-      setError("Something went wrong. Try again!" , err.message);
+      setError('Something went wrong. Try again!', err.message);
     }
   };
 
@@ -119,13 +118,7 @@ const SignIn1 = () => {
           <Form onSubmit={handleLogin}>
             <Form.Group className="mb-3" controlId="formEmail">
               <Form.Label>Email address</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Enter email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
+              <Form.Control type="email" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} required />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formPassword">
@@ -149,4 +142,4 @@ const SignIn1 = () => {
   );
 };
 
-export default SignIn1
+export default SignIn1;
