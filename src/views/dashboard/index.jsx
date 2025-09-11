@@ -33,8 +33,8 @@ const DashAnalytics = () => {
             params={{
               title: 'Total Amount In Wallet',
               class: 'bg-c-blue',
-              icon: "feather icon-credit-card",
-              primaryText: '486',
+              icon: 'feather icon-credit-card',
+              primaryText: '486'
               // secondaryText: 'Completed Orders',
               // extraText: '351'
             }}
@@ -46,7 +46,7 @@ const DashAnalytics = () => {
               title: 'Total QR',
               class: 'bg-c-green',
               icon: 'feather icon-grid',
-              primaryText: '1641',
+              primaryText: '1641'
               // secondaryText: 'This Month',
               // extraText: '213'
             }}
@@ -58,7 +58,7 @@ const DashAnalytics = () => {
               title: 'Total Used QR',
               class: 'bg-c-yellow',
               icon: 'feather icon-repeat',
-              primaryText: '$42,562',
+              primaryText: '$42,562'
               // secondaryText: 'This Month',
               // extraText: '$5,032'
             }}
@@ -70,7 +70,7 @@ const DashAnalytics = () => {
               title: 'Total User',
               class: 'bg-c-red',
               icon: 'feather icon-user',
-              primaryText: '$9,562',
+              primaryText: '$9,562'
               // secondaryText: 'This Month',
               // extraText: '$542'
             }}
@@ -149,8 +149,6 @@ const DashAnalytics = () => {
                       <span className="ms-3">Unused</span>
                     </Col>
 
-
-                  
                     <Col>
                       <h3 className="m-0 text-white">
                         <i className="fas fa-circle f-10 mx-2 text-white" />
@@ -295,7 +293,6 @@ const DashAnalytics = () => {
                         <th>
                           <span>PayAt</span>
                         </th>
-                        
                       </tr>
                     </thead>
                     <tbody>
@@ -308,14 +305,7 @@ const DashAnalytics = () => {
                         <td>pending</td>
                         <td>10-11-2025</td>
                         <td>10:55</td>
-                        
                       </tr>
-                     
-                    
-                  
-                      
-                     
-                    
                     </tbody>
                   </Table>
                 </PerfectScrollbar>

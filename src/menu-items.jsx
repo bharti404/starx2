@@ -110,7 +110,7 @@ const menuItems = {
           url: '/auth/signin-1',
           target: true,
           breadcrumbs: false
-        },
+        }
         // {
         //   id: 'sign Up',
         //   title: 'Register',
@@ -130,7 +130,7 @@ const menuItems = {
         //   breadcrumbs: false
         // }
       ]
-    },
+    }
     // {
     //   id: 'support',
     //   title: 'Support',
