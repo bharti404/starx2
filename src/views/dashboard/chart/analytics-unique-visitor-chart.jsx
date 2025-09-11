@@ -67,11 +67,11 @@ const chartData = {
   },
   series: [
     {
-      name: 'Arts',
+      name: 'Total Product',
       data: [20, 50, 30, 60, 30, 50]
     },
     {
-      name: 'Commerce',
+      name: 'Toatl QR',
       data: [60, 30, 65, 45, 67, 35]
     }
   ]
