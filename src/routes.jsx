@@ -250,7 +250,7 @@ import { Routes, Navigate, Route } from 'react-router-dom';
 import Loader from './components/Loader/Loader';
 import AdminLayout from './layouts/AdminLayout';
 import ProtectedRoute from './components/protectedRoute/ProtectedRoute'; // ✅ fixed import
-import { BASE_URL } from './config/constant';
+// import { BASE_URL } from './config/constant';
 
 // ==============================|| ROUTES RENDERER ||============================== //
 
@@ -397,7 +397,7 @@ export const routes = [
       {
         path: '*',
         exact: 'true',
-        element: () => <Navigate to={BASE_URL} />
+       element: () => <Navigate to="/auth/signin-1" replace />
       }
     ]
   }
