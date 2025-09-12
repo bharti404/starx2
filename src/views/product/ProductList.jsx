@@ -94,7 +94,7 @@
 // export default ProductList;
 
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col  , Spinner} from 'react-bootstrap';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 import ProductCard from './ProductCard';
@@ -148,7 +148,15 @@ const ProductList = () => {
     fetchProducts();
   }, [navigate]);
 
-  if (loading) return <p>Loading products...</p>;
+   if (loading)
+    return (
+      <div className="d-flex justify-content-center align-items-center vh-100">
+        <div className="text-center">
+          <Spinner animation="border" variant="primary" role="status" style={{ width: '4rem', height: '4rem' }} />
+          <p className="mt-3 fw-bold text-primary">Loading products...</p>
+        </div>
+      </div>
+    );
   if (error) return <p style={{ color: 'red' }}>{error}</p>;
 
   return (

@@ -217,7 +217,7 @@
 
 // export default QRCodeList;
 
-import { Table, Container, Row, Col, Button, Modal, Form } from 'react-bootstrap';
+import { Table, Container, Row, Col, Button, Modal, Form ,Spinner} from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
@@ -234,8 +234,7 @@ const initialProductsData = [
 ];
 
 const QRCodeList = () => {
-  const [showModal, setShowModal] = useState(false);
-
+  
   // --- keep your original sample table data intact ---
   const products = [
     {
@@ -273,6 +272,9 @@ const QRCodeList = () => {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const [btnLoading, setBtnLoading] = useState(false);
+
 
   const navigate = useNavigate();
 
@@ -347,6 +349,7 @@ const QRCodeList = () => {
       count: totalQr,
       productId: selectedProduct
     };
+    setBtnLoading(true)
 
     try {
       const response = await fetch('https://starx-backend.onrender.com/api/qrcode/create', {
@@ -376,6 +379,8 @@ const QRCodeList = () => {
     } catch (err) {
       console.error('Error creating QR code:', err);
       alert('Something went wrong while creating QR codes.');
+    }finally{
+      setBtnLoading(false)
     }
   };
 
@@ -516,9 +521,32 @@ const QRCodeList = () => {
             <Button variant="secondary" onClick={handleCloseModal}>
               Cancel
             </Button>
-            <Button variant="primary" type="submit">
-              Add QR Codes
+
+            <Button
+              variant="primary"
+              type="submit"
+              className=" d-flex justify-content-center align-items-center"
+              disabled={btnLoading}
+            >
+              {btnLoading ? (
+                <>
+                  <Spinner
+                    as="span"
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                    className="me-2"
+                  />
+                  Adding...
+                </>
+              ) : (
+                'Add QR Codes'
+              )}
             </Button>
+            {/* <Button variant="primary" type="submit">
+              Add QR Codes
+            </Button> */}
           </Modal.Footer>
         </Form>
       </Modal>

@@ -9,7 +9,7 @@ import { ConfigContext } from '../../../contexts/ConfigContext';
 import * as actionType from '../../../store/actions';
 
 // assets
-import logo from '../../../assets/images/logo.png';
+// import logo from '../../../assets/images/logo.png';
 
 // ==============================|| NAV BAR ||============================== //
 
@@ -46,10 +46,14 @@ const NavBar = () => {
         <Link to="#" className={toggleClass.join(' ')} id="mobile-collapse" onClick={navToggleHandler}>
           <span />
         </Link>
-        <Link to="#" className="b-brand">
+        {/* <Link to="#" className="b-brand">
           <img id="main-logo" src={logo} alt="" className="logo" />
+        </Link> */}
+
+        <Link to="#" className="b-brand">
+         <h1 className="text-white fw-bold m-0 brand-text">Strax</h1>
         </Link>
-        <Link to="#" className={moreClass.join(' ')} onClick={() => setMoreToggle(!moreToggle)}>
+        <Link to="#" className={`${moreClass.join(" ")} ms-0`} onClick={() => setMoreToggle(!moreToggle)}>
           <i className="feather icon-more-vertical" />
         </Link>
       </div>

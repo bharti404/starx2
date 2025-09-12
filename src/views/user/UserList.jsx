@@ -127,7 +127,7 @@
 // export default UserList;
 
 import React, { useEffect, useState } from 'react';
-import { Table, Container } from 'react-bootstrap';
+import { Table, Container , Spinner} from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
@@ -182,7 +182,15 @@ const UserList = () => {
     fetchUsers();
   }, [navigate]);
 
-  if (loading) return <p>Loading users...</p>;
+   if (loading)
+      return (
+        <div className="d-flex justify-content-center align-items-center vh-100">
+          <div className="text-center">
+            <Spinner animation="border" variant="primary" role="status" style={{ width: '4rem', height: '4rem' }} />
+            <p className="mt-3 fw-bold text-primary">Loading User...</p>
+          </div>
+        </div>
+      );
   if (error) return <p style={{ color: 'red' }}>{error}</p>;
 
   return (

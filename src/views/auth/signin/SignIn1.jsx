@@ -70,19 +70,23 @@
 // export default Signin1;
 
 import React, { useState } from 'react';
-import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
+import { Form, Button, Container, Row, Col, Alert ,Spinner} from 'react-bootstrap';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
+
 
 const SignIn1 = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
+     setLoading(true);
 
     try {
       // Example API call (replace with your API endpoint)
@@ -106,6 +110,8 @@ const SignIn1 = () => {
       }
     } catch (err) {
       setError('Something went wrong. Try again!', err.message);
+    }finally{
+      setLoading(false)
     }
   };
 
@@ -132,8 +138,27 @@ const SignIn1 = () => {
               />
             </Form.Group>
 
-            <Button variant="primary" type="submit" className="w-100">
-              Login
+            <Button
+              variant="primary"
+              type="submit"
+              className="w-100 d-flex justify-content-center align-items-center"
+              disabled={loading}
+            >
+              {loading ? (
+                <>
+                  <Spinner
+                    as="span"
+                    animation="border"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                    className="me-2"
+                  />
+                  Logging in...
+                </>
+              ) : (
+                'Login'
+              )}
             </Button>
           </Form>
         </Col>
