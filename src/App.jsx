@@ -14,8 +14,6 @@
 
 //bharti
 
-
-
 // App.js
 
 // project-import
