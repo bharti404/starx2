@@ -5,7 +5,7 @@
 [![Download ZIP](https://img.shields.io/badge/Download-ZIP-blue?style=flat-square&logo=github)](https://codedthemes.com/item/gradient-able-reactjs-free-admin-template/)
 [![Join Discord](https://img.shields.io/badge/Join-Discord-5865F2?style=flat-square&logo=discord&logoColor=white)](https://discord.com/invite/p2E2WhCb6s)
 
-Gradient Able React Free Admin Template comes with a variety of components like Button, Badges, Breadcrumb, & Authentication pages. The code structure is highly flexible to use and modify. Its design adapts to  any screen size easily, even on retina screens. It is a modern concept dashboard design with eye-catching colors. Wish you happy in using our product in your project.
+Gradient Able React Free Admin Template comes with a variety of components like Button, Badges, Breadcrumb, & Authentication pages. The code structure is highly flexible to use and modify. Its design adapts to any screen size easily, even on retina screens. It is a modern concept dashboard design with eye-catching colors. Wish you happy in using our product in your project.
 
 ✨ Support us! If you like this theme, click the ⭐ (Top right) and let it shine.
 
@@ -37,6 +37,7 @@ Gradient Able React Free Admin Template comes with a variety of components like 
 ```
 git clone https://github.com/codedthemes/gradient-able-free-admin-template.git
 ```
+
 2. Go into react folder
 
 3. Install packages
@@ -75,16 +76,16 @@ Gradient Able is offers everything you need to create dashboards. We have includ
 
 The [Pro version](https://codedthemes.com/item/gradient-able-reactjs-admin-dashboard/) of Gradient able react template includes features such as javascript, apps, authentication methods (i.e. JWT, Auth0, Firebase), advance components, form plugins, layouts, widgets, and more.
 
-| [Gradient Able Free](https://github.com/codedthemes/gradient-able-free-admin-template) | [Gradient able Pro](https://codedthemes.com/item/gradient-able-reactjs-admin-dashboard/)                |
-| -------------------------------------------------------     | :------------------------------------------------------------------------------- |
-| **12** Demo pages                                            | **100+** demo pages                                                               |
-| -                                                           | ✓ Multi-language                                                                 |
-| -                                                           | ✓ Dark/Light Mode 🌓                                                             |
-| -                                                           | ✓ Js version                                                              |
-| -                                                           | ✓ Multiple color options                                                                |
-| -                                                           | ✓ RTL                                                                            |
-| -                                                                                            | ✓ JWT, Firebase, Auth0, AWS authentication                                                                                                                            |
-| ✓ [MIT License](https://github.com/codedthemes/gradient-able-free-admin-template/blob/readme/LICENSE)                                               | ✓ [Pro License](https://codedthemes.com/item/gradient-able-reactjs-admin-dashboard)                |
+| [Gradient Able Free](https://github.com/codedthemes/gradient-able-free-admin-template)                | [Gradient able Pro](https://codedthemes.com/item/gradient-able-reactjs-admin-dashboard/) |
+| ----------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------- |
+| **12** Demo pages                                                                                     | **100+** demo pages                                                                      |
+| -                                                                                                     | ✓ Multi-language                                                                         |
+| -                                                                                                     | ✓ Dark/Light Mode 🌓                                                                     |
+| -                                                                                                     | ✓ Js version                                                                             |
+| -                                                                                                     | ✓ Multiple color options                                                                 |
+| -                                                                                                     | ✓ RTL                                                                                    |
+| -                                                                                                     | ✓ JWT, Firebase, Auth0, AWS authentication                                               |
+| ✓ [MIT License](https://github.com/codedthemes/gradient-able-free-admin-template/blob/readme/LICENSE) | ✓ [Pro License](https://codedthemes.com/item/gradient-able-reactjs-admin-dashboard)      |
 
 ## Documentation
 
@@ -107,10 +108,10 @@ The [Pro version](https://codedthemes.com/item/gradient-able-reactjs-admin-dashb
 
 ## Other Technologies
 
-| Technology                                                                                                                        | Free                                                                               | Pro                                                                       |
-| --------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| <p align="center"><img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/Angular.png" width="25" height="25"></p>   | [**Free**](https://codedthemes.com/item/gradient-able-angular-free-admin-template/)       | [**Pro**](https://codedthemes.com/item/gradient-able-angular-admin-template/)    |
-| <p align="center"><img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/Bootstrap.png" width="30" height="30"></p> | [**Free**](https://codedthemes.com/item/gradient-able-bootstrap-lite/)     | [**Pro**](https://codedthemes.com/item/gradient-able-admin-template/) |
+| Technology                                                                                                                        | Free                                                                                | Pro                                                                           |
+| --------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| <p align="center"><img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/Angular.png" width="25" height="25"></p>   | [**Free**](https://codedthemes.com/item/gradient-able-angular-free-admin-template/) | [**Pro**](https://codedthemes.com/item/gradient-able-angular-admin-template/) |
+| <p align="center"><img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/Bootstrap.png" width="30" height="30"></p> | [**Free**](https://codedthemes.com/item/gradient-able-bootstrap-lite/)              | [**Pro**](https://codedthemes.com/item/gradient-able-admin-template/)         |
 
 ## Save more with Big Bundle
 
@@ -118,11 +119,12 @@ The [Pro version](https://codedthemes.com/item/gradient-able-reactjs-admin-dashb
 
 ## More React Dashboard Templates
 
-| Dashboard                                                                                                                                                          | FREE                                                                                | PRO                                                                                   |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/Berry%20with%20name.png"  height="30" style="display:inline-block; vertical-align:middle;">   | [**Free**](https://codedthemes.com/item/berry-mui-free-react-admin-template/)       | [**Pro**](https://codedthemes.com/item/berry-material-react-admin-template/)</span>   |
-| <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/Mantis%20with%20name.png" height="30" style="display:inline-block; vertical-align:middle;">    | [**Free**](https://codedthemes.com/item/mantis-free-mui-admin-template/)      | [**Pro**](https://codedthemes.com/item/mantis-mui-react-dashboard-template/)</span>       |
-| <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/Datta%20with%20name.png" height="30" style="display:inline-block; vertical-align:middle;"> | [**Free**](https://codedthemes.com/item/datta-able-bootstrap-lite/) | [**Pro**](https://codedthemes.com/item/datta-able-bootstrap-admin-template/)</span> |
+| Dashboard                                                                                                                                                        | FREE                                                                          | PRO                                                                                 |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/Berry%20with%20name.png"  height="30" style="display:inline-block; vertical-align:middle;"> | [**Free**](https://codedthemes.com/item/berry-mui-free-react-admin-template/) | [**Pro**](https://codedthemes.com/item/berry-material-react-admin-template/)</span> |
+| <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/Mantis%20with%20name.png" height="30" style="display:inline-block; vertical-align:middle;"> | [**Free**](https://codedthemes.com/item/mantis-free-mui-admin-template/)      | [**Pro**](https://codedthemes.com/item/mantis-mui-react-dashboard-template/)</span> |
+| <img src="https://org-public-assets.s3.us-west-2.amazonaws.com/logos/Datta%20with%20name.png" height="30" style="display:inline-block; vertical-align:middle;">  | [**Free**](https://codedthemes.com/item/datta-able-bootstrap-lite/)           | [**Pro**](https://codedthemes.com/item/datta-able-bootstrap-admin-template/)</span> |
+
 ## Issues
 
 If you found a bug in any version, please generate a [GitHub issue](https://github.com/codedthemes/gradient-able-free-admin-template/issues). We are trying our best to resolve the issue.
@@ -132,7 +134,7 @@ If you found a bug in any version, please generate a [GitHub issue](https://gith
 - Licensed under [MIT](https://github.com/codedthemes/gradient-able-free-admin-template/blob/readme/LICENSE)
 - Copyright © [CodedThemes](https://codedthemes.com/)
 
-## Contributor 
+## Contributor
 
 **CodedThemes Team**
 

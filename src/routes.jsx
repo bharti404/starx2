@@ -303,8 +303,6 @@
 
 // export default renderRoutes;
 
-
-
 import React, { Suspense, lazy } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
@@ -343,19 +341,136 @@ const renderRoutes = () => (
       <Route path="/auth/reset-password-1" element={<ResetPassword1 />} />
 
       {/* Protected /app routes */}
-      <Route path="/app/dashboard/analytics" element={<ProtectedRoute><AdminLayout><Dashboard /></AdminLayout></ProtectedRoute>} />
-      <Route path="/app/product/analytics" element={<ProtectedRoute><AdminLayout><ProductList /></AdminLayout></ProtectedRoute>} />
-      <Route path="/app/user/analytics" element={<ProtectedRoute><AdminLayout><UserList /></AdminLayout></ProtectedRoute>} />
-      <Route path="/app/user/:userId" element={<ProtectedRoute><AdminLayout><UserDetail /></AdminLayout></ProtectedRoute>} />
-      <Route path="/app/transation/analytics" element={<ProtectedRoute><AdminLayout><TransationList /></AdminLayout></ProtectedRoute>} />
-      <Route path="/app/qrcode/analytics" element={<ProtectedRoute><AdminLayout><QRCodeList /></AdminLayout></ProtectedRoute>} />
-      <Route path="/app/basic/button" element={<ProtectedRoute><AdminLayout><BasicButton /></AdminLayout></ProtectedRoute>} />
-      <Route path="/app/basic/badges" element={<ProtectedRoute><AdminLayout><BasicBadges /></AdminLayout></ProtectedRoute>} />
-      <Route path="/app/basic/breadcrumb-pagination" element={<ProtectedRoute><AdminLayout><BasicBreadcrumbPagination /></AdminLayout></ProtectedRoute>} />
-      <Route path="/app/basic/collapse" element={<ProtectedRoute><AdminLayout><BasicCollapse /></AdminLayout></ProtectedRoute>} />
-      <Route path="/app/basic/typography" element={<ProtectedRoute><AdminLayout><BasicTypography /></AdminLayout></ProtectedRoute>} />
-      <Route path="/app/basic/tooltip-popovers" element={<ProtectedRoute><AdminLayout><BasicTooltipsPopovers /></AdminLayout></ProtectedRoute>} />
-      <Route path="/app/sample-page" element={<ProtectedRoute><AdminLayout><SamplePage /></AdminLayout></ProtectedRoute>} />
+      <Route
+        path="/app/dashboard/analytics"
+        element={
+          <ProtectedRoute>
+            <AdminLayout>
+              <Dashboard />
+            </AdminLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/app/product/analytics"
+        element={
+          <ProtectedRoute>
+            <AdminLayout>
+              <ProductList />
+            </AdminLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/app/user/analytics"
+        element={
+          <ProtectedRoute>
+            <AdminLayout>
+              <UserList />
+            </AdminLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/app/user/:userId"
+        element={
+          <ProtectedRoute>
+            <AdminLayout>
+              <UserDetail />
+            </AdminLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/app/transation/analytics"
+        element={
+          <ProtectedRoute>
+            <AdminLayout>
+              <TransationList />
+            </AdminLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/app/qrcode/analytics"
+        element={
+          <ProtectedRoute>
+            <AdminLayout>
+              <QRCodeList />
+            </AdminLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/app/basic/button"
+        element={
+          <ProtectedRoute>
+            <AdminLayout>
+              <BasicButton />
+            </AdminLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/app/basic/badges"
+        element={
+          <ProtectedRoute>
+            <AdminLayout>
+              <BasicBadges />
+            </AdminLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/app/basic/breadcrumb-pagination"
+        element={
+          <ProtectedRoute>
+            <AdminLayout>
+              <BasicBreadcrumbPagination />
+            </AdminLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/app/basic/collapse"
+        element={
+          <ProtectedRoute>
+            <AdminLayout>
+              <BasicCollapse />
+            </AdminLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/app/basic/typography"
+        element={
+          <ProtectedRoute>
+            <AdminLayout>
+              <BasicTypography />
+            </AdminLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/app/basic/tooltip-popovers"
+        element={
+          <ProtectedRoute>
+            <AdminLayout>
+              <BasicTooltipsPopovers />
+            </AdminLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/app/sample-page"
+        element={
+          <ProtectedRoute>
+            <AdminLayout>
+              <SamplePage />
+            </AdminLayout>
+          </ProtectedRoute>
+        }
+      />
 
       {/* Top-level fallback */}
       <Route path="*" element={<Navigate to="/auth/signin-1" replace />} />

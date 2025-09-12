@@ -38,7 +38,7 @@ const root = createRoot(container);
 
 root.render(
   <ConfigProvider>
-    <BrowserRouter >
+    <BrowserRouter>
       <App />
     </BrowserRouter>
   </ConfigProvider>
