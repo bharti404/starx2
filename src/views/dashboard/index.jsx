@@ -13,7 +13,8 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 import OrderCard from '../../components/Widgets/Statistic/OrderCard';
 // import SocialCard from '../../components/Widgets/Statistic/SocialCard';
 
-import uniqueVisitorChart from './chart/analytics-unique-visitor-chart';
+// import uniqueVisitorChart from './chart/analytics-unique-visitor-chart';
+import buildChartData from './chart/analytics-unique-visitor-chart';
 // import customerChart from './chart/analytics-cuatomer-chart';
 import customerChart1 from './chart/analytics-cuatomer-chart-1';
 
@@ -38,7 +39,7 @@ const DashAnalytics = () => {
   const [totalQr, setTotalQr] = useState('');
   const [totalUsedQr, setTotalUsedQr] = useState('');
   const [totalUnusedQr, setTotalUnusedQr] = useState('');
-  // const [qrData, setQrData] = useState([]);
+  const [qrData, setQrData] = useState([]);
   // const [chartConfig, setChartConfig] = useState(null);
 
   console.log(newUsers);
@@ -48,6 +49,7 @@ const DashAnalytics = () => {
   console.log(totalQr);
   console.log(totalUnusedQr);
   console.log(totalUsedQr);
+  console.log(qrData);
 
   const navigate = useNavigate();
 
@@ -242,7 +244,7 @@ const DashAnalytics = () => {
         const data = await response.json();
 
         if (response.ok) {
-          
+          setQrData(data)
           setTotalQr(data.length);
           setTotalUnusedQr(data.filter((cur) => cur.status === 'unused').length);
           setTotalUsedQr(data.filter((cur) => cur.status === 'used').length);
@@ -323,7 +325,8 @@ const DashAnalytics = () => {
               <h5>QR analyst</h5>
             </Card.Header>
             <Card.Body className="ps-4 pt-4 pb-0">
-              <Chart {...uniqueVisitorChart} />
+              {/* <Chart {...uniqueVisitorChart} /> */}
+               <Chart {...buildChartData(qrData)} redrawOnParentResize={true} />
               
             </Card.Body>
           </Card>
@@ -380,7 +383,7 @@ const DashAnalytics = () => {
                     <Col>
                       <h3 className="m-0 text-white">
                         <i className="fas fa-circle f-10 mx-2 text-success" />
-                        674
+                        {totalUnusedQr}
                       </h3>
                       <span className="ms-3">Unused</span>
                     </Col>
@@ -388,7 +391,7 @@ const DashAnalytics = () => {
                     <Col>
                       <h3 className="m-0 text-white">
                         <i className="fas fa-circle f-10 mx-2 text-white" />
-                        182
+                       {totalUsedQr}
                       </h3>
                       <span className="ms-3">Used</span>
                     </Col>
