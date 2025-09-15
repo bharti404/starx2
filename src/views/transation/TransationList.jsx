@@ -311,8 +311,8 @@ function TransationList() {
         const data = await response.json();
 
         if (response.ok) {
-          setTransaction(data.transaction || []);
-          console.log('userBB ', data);
+          setTransaction(data.transactions || []);
+          console.log('userBBtt ', data);
         } else {
           setError(data.message || 'Failed to fetch users');
         }
@@ -346,7 +346,7 @@ function TransationList() {
               <thead className="table-dark">
                 <tr>
                   <th style={{ width: '15%' }}>QR Id</th>
-                  <th style={{ width: '15%' }}>Product Name</th>
+                 
 
                   <th className="text-center">Amount</th>
                   <th className="text-center">From Wallet</th>
@@ -354,17 +354,17 @@ function TransationList() {
                   <th className="text-center">status</th>
 
                   <th className="text-center">PayoutData</th>
-                  <th className="text-center">PayAt</th>
+                  {/* <th className="text-center">PayAt</th> */}
                 </tr>
               </thead>
               <tbody>
                 {transaction.map((product, index) => (
                   <tr key={index}>
                     <td>{product._id}</td>
-                    <td>{product.name}</td>
+                    
                     <td>{product.amount}</td>
-                    <td>{product.fromWallet}</td>
-                    <td>{product.toWallet}</td>
+                    <td>{product?.fromWallet?.ownerType}</td>
+                    <td>{product?.toWallet?.ownerType}</td>
                     <td>
                       <span
                         className={`
@@ -378,8 +378,8 @@ function TransationList() {
                         {product.status}
                       </span>
                     </td>
-                    <td>{product.payoutData}</td>
-                    <td>{product.payAt}</td>
+                   <td>{new Date(product.payoutBatchDate).toLocaleDateString()}</td>
+                    {/* <td>{product.payAt}</td> */}
                   </tr>
                 ))}
               </tbody>

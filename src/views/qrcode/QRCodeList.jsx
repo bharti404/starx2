@@ -236,32 +236,32 @@ const initialProductsData = [
 const QRCodeList = () => {
   
   // --- keep your original sample table data intact ---
-  const products = [
-    {
-      name: 'Product 1',
-      qr10: { total: 20, used: 10, remain: 10 },
-      qr20: { total: 15, used: 5, remain: 10 },
-      qr30: { total: 25, used: 15, remain: 10 },
-      qr40: { total: 30, used: 10, remain: 20 },
-      qr50: { total: 40, used: 20, remain: 20 }
-    },
-    {
-      name: 'Product 2',
-      qr10: { total: 25, used: 15, remain: 10 },
-      qr20: { total: 20, used: 10, remain: 10 },
-      qr30: { total: 35, used: 20, remain: 15 },
-      qr40: { total: 40, used: 15, remain: 25 },
-      qr50: { total: 50, used: 30, remain: 20 }
-    },
-    {
-      name: 'Product 3',
-      qr10: { total: 30, used: 20, remain: 10 },
-      qr20: { total: 25, used: 15, remain: 10 },
-      qr30: { total: 40, used: 25, remain: 15 },
-      qr40: { total: 45, used: 20, remain: 25 },
-      qr50: { total: 55, used: 35, remain: 20 }
-    }
-  ];
+  // const products = [
+  //   {
+  //     name: 'Product 1',
+  //     qr10: { total: 20, used: 10, remain: 10 },
+  //     qr20: { total: 15, used: 5, remain: 10 },
+  //     qr30: { total: 25, used: 15, remain: 10 },
+  //     qr40: { total: 30, used: 10, remain: 20 },
+  //     qr50: { total: 40, used: 20, remain: 20 }
+  //   },
+  //   {
+  //     name: 'Product 2',
+  //     qr10: { total: 25, used: 15, remain: 10 },
+  //     qr20: { total: 20, used: 10, remain: 10 },
+  //     qr30: { total: 35, used: 20, remain: 15 },
+  //     qr40: { total: 40, used: 15, remain: 25 },
+  //     qr50: { total: 50, used: 30, remain: 20 }
+  //   },
+  //   {
+  //     name: 'Product 3',
+  //     qr10: { total: 30, used: 20, remain: 10 },
+  //     qr20: { total: 25, used: 15, remain: 10 },
+  //     qr30: { total: 40, used: 25, remain: 15 },
+  //     qr40: { total: 45, used: 20, remain: 25 },
+  //     qr50: { total: 55, used: 35, remain: 20 }
+  //   }
+  // ];
 
   // --- fallback static list for dropdown (kept so nothing is removed) ---
 
@@ -274,9 +274,94 @@ const QRCodeList = () => {
   const [error, setError] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [btnLoading, setBtnLoading] = useState(false);
+  const [qrData, setQrData] = useState([]);
+  
 
 
   const navigate = useNavigate();
+
+
+
+  useEffect(() => {
+      const fetchQr = async () => {
+        const token = Cookies.get('token');
+  
+        if (!token) {
+          // Redirect to login if token is missing
+          navigate('/auth/signin-1', { replace: true });
+          return;
+        }
+        setLoading(true)
+  
+        try {
+          const response = await fetch('https://starx-backend.onrender.com/api/qrcode/all', {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`
+            }
+          });
+  
+          if (response.status === 401) {
+            // Unauthorized, token invalid
+            Cookies.remove('token');
+            navigate('/auth/signin-1', { replace: true });
+            return;
+          }
+  
+          const data = await response.json();
+  
+          if (response.ok) {
+            setQrData(data)
+          } else {
+            setError(data.message || 'Failed to fetch products');
+          }
+        } catch (err) {
+          setError('Something went wrong. Try again!');
+        } finally {
+          setLoading(false);
+        }
+      };
+  
+      fetchQr();
+    }, [navigate]);
+
+
+    const processQrData = () => {
+    const amounts = [10, 20, 30, 40, 50];
+    const result = {};
+    
+    amounts.forEach(amount => {
+      result[`qr${amount}`] = {
+        total: 0,
+        used: 0,
+        remain: 0
+      };
+    });
+
+    qrData.forEach(item => {
+      const amount = item.amount;
+      const key = `qr${amount}`;
+      
+      if (result[key]) {
+        result[key].total += 1;
+        if (item.status === 'used') {
+          result[key].used += 1;
+        } else {
+          result[key].remain += 1;
+        }
+      }
+    });
+
+    return result;
+  };
+
+  const qrStats = processQrData();
+
+  console.log(qrStats)
+
+
+
 
   //eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
@@ -288,6 +373,8 @@ const QRCodeList = () => {
         navigate('/auth/signin-1', { replace: true });
         return;
       }
+
+      
 
       try {
         const response = await fetch('https://starx-backend.onrender.com/api/product', {
@@ -384,6 +471,17 @@ const QRCodeList = () => {
     }
   };
 
+
+   if (loading)
+      return (
+        <div className="d-flex justify-content-center align-items-center vh-100">
+          <div className="text-center">
+            <Spinner animation="border" variant="primary" role="status" style={{ width: '4rem', height: '4rem' }} />
+            <p className="mt-3 fw-bold text-primary">Loading QR...</p>
+          </div>
+        </div>
+      );
+
   return (
     <Container className="my-4">
       <Row className="mb-4">
@@ -404,7 +502,7 @@ const QRCodeList = () => {
             <Table striped bordered hover className="shadow-sm">
               <thead className="table-dark">
                 <tr>
-                  <th style={{ width: '15%' }}>Product Name</th>
+                  
                   <th className="text-center">QR Amount of 10</th>
                   <th className="text-center">QR Amount of 20</th>
                   <th className="text-center">QR Amount of 30</th>
@@ -413,58 +511,51 @@ const QRCodeList = () => {
                 </tr>
               </thead>
               <tbody>
-                {products.map((product, index) => (
-                  <tr key={index}>
-                    <td className="fw-bold">{product.name}</td>
+                <tr>
+                  <td className="text-center">
+                        <div className="d-flex flex-column gap-1 p-2">
+                          <span className="fw-bold text-dark">Total: {qrStats.qr10.total}</span>
+                          <span className="text-muted">Used: {qrStats.qr10.used}</span>
+                          <span className="text-primary fw-bold">Remain: {qrStats.qr10.remain}</span>
+                        </div>
+                      </td>
 
-                    {/* QR 10 */}
-                    <td className="text-center">
-                      <div className="d-flex flex-column gap-1">
-                        <span className="fw-bold text-dark">Total: {product.qr10.total}</span>
-                        <span className="text-muted">Used: {product.qr10.used}</span>
-                        <span className="text-primary fw-bold">Remain: {product.qr10.remain}</span>
-                      </div>
-                    </td>
+                       <td className="text-center">
+                        <div className="d-flex flex-column gap-1 p-2">
+                          <span className="fw-bold text-dark">Total: {qrStats.qr20.total}</span>
+                          <span className="text-muted">Used: {qrStats.qr20.used}</span>
+                          <span className="text-primary fw-bold">Remain: {qrStats.qr20.remain}</span>
+                        </div>
+                      </td>
 
-                    {/* QR 20 */}
-                    <td className="text-center">
-                      <div className="d-flex flex-column gap-1">
-                        <span className="fw-bold text-dark">Total: {product.qr20.total}</span>
-                        <span className="text-muted">Used: {product.qr20.used}</span>
-                        <span className="text-primary fw-bold">Remain: {product.qr20.remain}</span>
-                      </div>
-                    </td>
 
-                    {/* QR 30 */}
-                    <td className="text-center">
-                      <div className="d-flex flex-column gap-1">
-                        <span className="fw-bold text-dark">Total: {product.qr30.total}</span>
-                        <span className="text-muted">Used: {product.qr30.used}</span>
-                        <span className="text-primary fw-bold">Remain: {product.qr30.remain}</span>
-                      </div>
-                    </td>
+                       <td className="text-center">
+                        <div className="d-flex flex-column gap-1 p-2">
+                          <span className="fw-bold text-dark">Total: {qrStats.qr30.total}</span>
+                          <span className="text-muted">Used: {qrStats.qr30.used}</span>
+                          <span className="text-primary fw-bold">Remain: {qrStats.qr30.remain}</span>
+                        </div>
+                      </td>
+                      <td className="text-center">
+                        <div className="d-flex flex-column gap-1 p-2">
+                          <span className="fw-bold text-dark">Total: {qrStats.qr40.total}</span>
+                          <span className="text-muted">Used: {qrStats.qr40.used}</span>
+                          <span className="text-primary fw-bold">Remain: {qrStats.qr40.remain}</span>
+                        </div>
+                      </td>
 
-                    {/* QR 40 */}
-                    <td className="text-center">
-                      <div className="d-flex flex-column gap-1">
-                        <span className="fw-bold text-dark">Total: {product.qr40.total}</span>
-                        <span className="text-muted">Used: {product.qr40.used}</span>
-                        <span className="text-primary fw-bold">Remain: {product.qr40.remain}</span>
-                      </div>
-                    </td>
-
-                    {/* QR 50 */}
-                    <td className="text-center">
-                      <div className="d-flex flex-column gap-1">
-                        <span className="fw-bold text-dark">Total: {product.qr50.total}</span>
-                        <span className="text-muted">Used: {product.qr50.used}</span>
-                        <span className="text-primary fw-bold">Remain: {product.qr50.remain}</span>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
+                       <td className="text-center">
+                        <div className="d-flex flex-column gap-1 p-2">
+                          <span className="fw-bold text-dark">Total: {qrStats.qr50.total}</span>
+                          <span className="text-muted">Used: {qrStats.qr50.used}</span>
+                          <span className="text-primary fw-bold">Remain: {qrStats.qr50.remain}</span>
+                        </div>
+                      </td>
+                </tr>
+               
               </tbody>
             </Table>
+
           </div>
         </Col>
       </Row>

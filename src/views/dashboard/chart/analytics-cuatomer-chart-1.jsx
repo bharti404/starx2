@@ -1,4 +1,4 @@
-const chartData = {
+const chartData =(totalUsedQr ,totalUnusedQr)=> ({
   height: 150,
   type: 'donut',
   options: {
@@ -12,12 +12,12 @@ const chartData = {
         }
       }
     },
-    labels: ['New', 'Return'],
+    labels: ['Used', 'Unused'],
     legend: {
       show: false
     },
     tooltip: {
-      theme: 'light'
+      theme: 'dark'
     },
     grid: {
       padding: {
@@ -35,6 +35,8 @@ const chartData = {
       width: 0
     }
   },
-  series: [20, 15]
-};
+  series: [totalUsedQr, totalUnusedQr]
+});
 export default chartData;
+
+
