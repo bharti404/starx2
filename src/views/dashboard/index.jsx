@@ -1,7 +1,7 @@
 import React from 'react';
 // react-bootstrap
 import { Row, Col, Card, Table, Spinner } from 'react-bootstrap';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import chartData from './chart/analytics-cuatomer-chart';
@@ -17,7 +17,7 @@ import OrderCard from '../../components/Widgets/Statistic/OrderCard';
 import buildChartData from './chart/analytics-unique-visitor-chart';
 // import customerChart from './chart/analytics-cuatomer-chart';
 import customerChart1 from './chart/analytics-cuatomer-chart-1';
-
+import { ConfigContext } from 'contexts/ConfigContext';
 
 // assets
 // import avatar1 from '../../assets/images/user/avatar-1.jpg';
@@ -52,6 +52,16 @@ const DashAnalytics = () => {
   console.log(qrData);
 
   const navigate = useNavigate();
+
+  const { state } = useContext(ConfigContext);
+  const { collapseMenu } = state;
+
+  useEffect(() => {
+    // force ApexCharts resize when sidebar opens/closes
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+    }, 300); // wait for sidebar animation to finish
+  }, [collapseMenu]);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -244,7 +254,7 @@ const DashAnalytics = () => {
         const data = await response.json();
 
         if (response.ok) {
-          setQrData(data)
+          setQrData(data);
           setTotalQr(data.length);
           setTotalUnusedQr(data.filter((cur) => cur.status === 'unused').length);
           setTotalUsedQr(data.filter((cur) => cur.status === 'used').length);
@@ -265,7 +275,6 @@ const DashAnalytics = () => {
     fetchtQR();
   }, [navigate]);
 
-  
   return (
     <React.Fragment>
       <Row>
@@ -324,10 +333,9 @@ const DashAnalytics = () => {
             <Card.Header>
               <h5>QR analyst</h5>
             </Card.Header>
-            <Card.Body className="ps-4 pt-4 pb-0">
+            <Card.Body className="ps-4 pt-4 pb-0" id="chart-container">
               {/* <Chart {...uniqueVisitorChart} /> */}
-               <Chart {...buildChartData(qrData)} redrawOnParentResize={true} />
-              
+              <Chart {...buildChartData(qrData)} redrawOnParentResize={true} />
             </Card.Body>
           </Card>
         </Col>
@@ -391,7 +399,7 @@ const DashAnalytics = () => {
                     <Col>
                       <h3 className="m-0 text-white">
                         <i className="fas fa-circle f-10 mx-2 text-white" />
-                       {totalUsedQr}
+                        {totalUsedQr}
                       </h3>
                       <span className="ms-3">Used</span>
                     </Col>

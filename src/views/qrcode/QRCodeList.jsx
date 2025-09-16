@@ -234,8 +234,6 @@
 // ];
 
 // const QRCodeList = () => {
-  
- 
 
 //   const [productsData, setProductsData] = useState(initialProductsData);
 //   const [selectedProduct, setSelectedProduct] = useState('');
@@ -247,24 +245,20 @@
 //   const [showModal, setShowModal] = useState(false);
 //   const [btnLoading, setBtnLoading] = useState(false);
 //   const [qrData, setQrData] = useState([]);
-  
-
 
 //   const navigate = useNavigate();
-
-
 
 //   useEffect(() => {
 //       const fetchQr = async () => {
 //         const token = Cookies.get('token');
-  
+
 //         if (!token) {
 //           // Redirect to login if token is missing
 //           navigate('/auth/signin-1', { replace: true });
 //           return;
 //         }
 //         setLoading(true)
-  
+
 //         try {
 //           const response = await fetch('https://starx-backend.onrender.com/api/qrcode/all', {
 //             method: 'GET',
@@ -273,16 +267,16 @@
 //               Authorization: `Bearer ${token}`
 //             }
 //           });
-  
+
 //           if (response.status === 401) {
 //             // Unauthorized, token invalid
 //             Cookies.remove('token');
 //             navigate('/auth/signin-1', { replace: true });
 //             return;
 //           }
-  
+
 //           const data = await response.json();
-  
+
 //           if (response.ok) {
 //             setQrData(data)
 //           } else {
@@ -294,15 +288,14 @@
 //           setLoading(false);
 //         }
 //       };
-  
+
 //       fetchQr();
 //     }, [navigate]);
-
 
 //     const processQrData = () => {
 //     const amounts = [10, 20, 30, 40, 50];
 //     const result = {};
-    
+
 //     amounts.forEach(amount => {
 //       result[`qr${amount}`] = {
 //         total: 0,
@@ -314,7 +307,7 @@
 //     qrData.forEach(item => {
 //       const amount = item.amount;
 //       const key = `qr${amount}`;
-      
+
 //       if (result[key]) {
 //         result[key].total += 1;
 //         if (item.status === 'used') {
@@ -332,9 +325,6 @@
 
 //   console.log(qrStats)
 
-
-
-
 //   //eslint-disable-next-line react-hooks/exhaustive-deps
 //   useEffect(() => {
 //     const fetchProducts = async () => {
@@ -345,8 +335,6 @@
 //         navigate('/auth/signin-1', { replace: true });
 //         return;
 //       }
-
-      
 
 //       try {
 //         const response = await fetch('https://starx-backend.onrender.com/api/product', {
@@ -443,7 +431,6 @@
 //     }
 //   };
 
-
 //    if (loading)
 //       return (
 //         <div className="d-flex justify-content-center align-items-center vh-100">
@@ -474,7 +461,7 @@
 //             <Table striped bordered hover className="shadow-sm">
 //               <thead className="table-dark">
 //                 <tr>
-                  
+
 //                   <th className="text-center">QR Amount of 10</th>
 //                   <th className="text-center">QR Amount of 20</th>
 //                   <th className="text-center">QR Amount of 30</th>
@@ -500,7 +487,6 @@
 //                         </div>
 //                       </td>
 
-
 //                        <td className="text-center">
 //                         <div className="d-flex flex-column gap-1 p-2">
 //                           <span className="fw-bold text-dark">Total: {qrStats.qr30.total}</span>
@@ -524,7 +510,7 @@
 //                         </div>
 //                       </td>
 //                 </tr>
-               
+
 //               </tbody>
 //             </Table>
 
@@ -619,18 +605,12 @@
 
 // export default QRCodeList;
 
-
-
-
 import { Container, Row, Col, Button, Modal, Form, Spinner, Card } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 
-
-
 const QRCodeList = () => {
-  
   const [amount, setAmount] = useState('');
   const [totalQr, setTotalQr] = useState('');
 
@@ -644,43 +624,41 @@ const QRCodeList = () => {
 
   // Fetch QR Codes
 
-
-
-   const fetchQr = async () => {
-      const token = Cookies.get('token');
-      if (!token) {
+  const fetchQr = async () => {
+    const token = Cookies.get('token');
+    if (!token) {
+      navigate('/auth/signin-1', { replace: true });
+      return;
+    }
+    setLoading(true);
+    try {
+      const response = await fetch('https://starx-backend.onrender.com/api/qrcode/all', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
+      });
+      if (response.status === 401) {
+        Cookies.remove('token');
         navigate('/auth/signin-1', { replace: true });
         return;
       }
-      setLoading(true);
-      try {
-        const response = await fetch('https://starx-backend.onrender.com/api/qrcode/all', {
-          method: 'GET',
-          headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }
-        });
-        if (response.status === 401) {
-          Cookies.remove('token');
-          navigate('/auth/signin-1', { replace: true });
-          return;
-        }
-        const data = await response.json();
-        if (response.ok) setQrData(data);
-        else setError(data.message || 'Failed to fetch QR codes');
-      } catch {
-        setError('Something went wrong. Try again!');
-      } finally {
-        setLoading(false);
-      }
-    };
+      const data = await response.json();
+      if (response.ok) setQrData(data);
+      else setError(data.message || 'Failed to fetch QR codes');
+    } catch {
+      setError('Something went wrong. Try again!');
+    } finally {
+      setLoading(false);
+    }
+  };
+  // eslint-disable-next-line
   useEffect(() => {
-   
     fetchQr();
   }, [navigate]);
 
   // Process QR Data into cards
   const processQrData = () => {
     const result = {};
-    qrData.forEach(item => {
+    qrData.forEach((item) => {
       const key = `₹${item.amount}`;
       if (!result[key]) result[key] = { total: 0, used: 0, remain: 0 };
       result[key].total += 1;
@@ -760,58 +738,54 @@ const QRCodeList = () => {
   //   }
   // };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const token = Cookies.get('token');
+    if (!token) return navigate('/auth/signin-1', { replace: true });
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-  const token = Cookies.get('token');
-  if (!token) return navigate('/auth/signin-1', { replace: true });
+    const payload = { amount, count: totalQr };
+    setBtnLoading(true);
 
-  const payload = { amount, count: totalQr };
-  setBtnLoading(true);
-
-  try {
-    const response = await fetch('https://starx-backend.onrender.com/api/qrcode/create', {
-      method: 'POST',
-      headers: { 
-        'Content-Type': 'application/json', 
-        Authorization: `Bearer ${token}` 
-      },
-      body: JSON.stringify(payload),
-    });
-
-    // Log the raw response for debugging
-    const responseText = await response.text();
-    console.log('Raw response:', responseText);
-    
-    let data;
     try {
-      data = JSON.parse(responseText);
-    } catch (parseError) {
-      console.error('JSON parse error:', parseError);
-      throw new Error('Server returned invalid JSON');
+      const response = await fetch('https://starx-backend.onrender.com/api/qrcode/create', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(payload)
+      });
+
+      // Log the raw response for debugging
+      const responseText = await response.text();
+      console.log('Raw response:', responseText);
+
+      let data;
+      try {
+        data = JSON.parse(responseText);
+      } catch (parseError) {
+        console.error('JSON parse error:', parseError);
+        throw new Error('Server returned invalid JSON');
+      }
+
+      console.log('Parsed data:', data);
+
+      if (!response.ok) {
+        // Handle non-200 status codes
+        throw new Error(data?.message || `Server error: ${response.status}`);
+      }
+
+      // Success case
+      handleCloseModal();
+      fetchQr();
+      alert('QR codes created successfully!');
+    } catch (err) {
+      console.error('Error details:', err);
+      alert(err.message || 'Something went wrong while creating QR codes.');
+    } finally {
+      setBtnLoading(false);
     }
-
-    console.log('Parsed data:', data);
-
-    if (!response.ok) {
-      // Handle non-200 status codes
-      throw new Error(data?.message || `Server error: ${response.status}`);
-    }
-
-    // Success case
-    handleCloseModal();
-    fetchQr();
-    alert('QR codes created successfully!');
-    
-  } catch (err) {
-    console.error('Error details:', err);
-    alert(err.message || 'Something went wrong while creating QR codes.');
-  } finally {
-    setBtnLoading(false);
-  }
-};
-
-
+  };
 
   if (loading)
     return (
@@ -844,9 +818,15 @@ const handleSubmit = async (e) => {
               <Card.Body>
                 <Card.Title className="text-center">{key} QR</Card.Title>
                 <hr />
-                <p className="mb-1">Total: <strong>{stats.total}</strong></p>
-                <p className="mb-1 text-muted">Used: <strong>{stats.used}</strong></p>
-                <p className="mb-0 text-primary">Remain: <strong>{stats.remain}</strong></p>
+                <p className="mb-1">
+                  Total: <strong>{stats.total}</strong>
+                </p>
+                <p className="mb-1 text-muted">
+                  Used: <strong>{stats.used}</strong>
+                </p>
+                <p className="mb-0 text-primary">
+                  Remain: <strong>{stats.remain}</strong>
+                </p>
               </Card.Body>
             </Card>
           </Col>
@@ -899,14 +879,18 @@ const handleSubmit = async (e) => {
             </Form.Group>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleCloseModal}>Cancel</Button>
+            <Button variant="secondary" onClick={handleCloseModal}>
+              Cancel
+            </Button>
             <Button variant="primary" type="submit" disabled={btnLoading}>
               {btnLoading ? (
                 <>
                   <Spinner as="span" animation="border" size="sm" role="status" aria-hidden="true" className="me-2" />
                   Adding...
                 </>
-              ) : 'Add QR Codes'}
+              ) : (
+                'Add QR Codes'
+              )}
             </Button>
           </Modal.Footer>
         </Form>
@@ -916,4 +900,3 @@ const handleSubmit = async (e) => {
 };
 
 export default QRCodeList;
-

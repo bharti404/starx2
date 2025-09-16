@@ -51,9 +51,9 @@ const NavBar = () => {
         </Link> */}
 
         <Link to="#" className="b-brand">
-         <h1 className="text-white fw-bold m-0 brand-text">Strax</h1>
+          <h1 className="text-white fw-bold m-0 brand-text">Strax</h1>
         </Link>
-        <Link to="#" className={`${moreClass.join(" ")} ms-0`} onClick={() => setMoreToggle(!moreToggle)}>
+        <Link to="#" className={`${moreClass.join(' ')} ms-0`} onClick={() => setMoreToggle(!moreToggle)}>
           <i className="feather icon-more-vertical" />
         </Link>
       </div>

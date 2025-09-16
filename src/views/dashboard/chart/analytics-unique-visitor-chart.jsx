@@ -78,7 +78,6 @@
 // };
 // export default chartData;
 
-
 // chartData.js
 // export default function buildChartData(qrData) {
 //   // Group data by amount
@@ -123,9 +122,6 @@
 //     height: 350
 //   };
 // }
-
-
-
 
 // chartData.js
 // export default function buildChartData(qrData) {
@@ -188,13 +184,9 @@
 //   };
 // }
 
-
-
 // buildChartData.js
 // buildChartData.js
 // buildChartData.js
-
-
 
 //  important
 // const buildChartData = (qrData = []) => {
@@ -248,14 +240,11 @@
 
 // export default buildChartData;
 
-
-
-
 const buildChartData = (qrData = []) => {
   if (!qrData || qrData.length === 0) {
     return {
       height: 230,
-      type: "line",
+      type: 'line',
       options: { chart: { toolbar: { show: false } } },
       series: []
     };
@@ -265,7 +254,7 @@ const buildChartData = (qrData = []) => {
   const grouped = qrData.reduce((acc, qr) => {
     const amt = qr.amount;
     if (!acc[amt]) acc[amt] = { used: 0, unused: 0 };
-    if (qr.status === "used") acc[amt].used += 1;
+    if (qr.status === 'used') acc[amt].used += 1;
     else acc[amt].unused += 1;
     return acc;
   }, {});
@@ -276,29 +265,34 @@ const buildChartData = (qrData = []) => {
 
   return {
     height: 230,
-    type: "line",
+    type: 'line',
     options: {
       chart: {
         toolbar: { show: false },
-        animations: { enabled: true, easing: "easeinout", speed: 400 },
+        animations: { enabled: true, easing: 'easeinout', speed: 400 },
         zoom: { enabled: false },
-        redrawOnParentResize: true // <-- ensures chart resizes properly
+        redrawOnParentResize: true,
+        events: {
+          mounted: () => {
+            window.dispatchEvent(new Event('resize'));
+          }
+        } // <-- ensures chart resizes properly
       },
       dataLabels: { enabled: false },
-      stroke: { width: 2, curve: "smooth" },
-      legend: { position: "top" },
+      stroke: { width: 2, curve: 'smooth' },
+      legend: { position: 'top' },
       xaxis: {
         categories,
-        labels: { style: { color: "#666" } },
-        title: { text: "QR Amount" }
+        labels: { style: { color: '#666' } },
+        title: { text: 'QR Amount' }
       },
       yaxis: {
-        labels: { style: { color: "#666" } },
-        title: { text: "Count" }
+        labels: { style: { color: '#666' } },
+        title: { text: 'Count' }
       },
-      colors: ["#1E88E5", "#43A047"], // used=blue, unused=green
+      colors: ['#1E88E5', '#43A047'], // used=blue, unused=green
       markers: { size: 5, strokeWidth: 2, hover: { size: 7 } },
-      grid: { borderColor: "#cccccc3b" },
+      grid: { borderColor: '#cccccc3b' },
       tooltip: {
         shared: true,
         intersect: false,
@@ -308,8 +302,8 @@ const buildChartData = (qrData = []) => {
       }
     },
     series: [
-      { name: "Used", data: usedSeries },
-      { name: "Unused", data: unusedSeries }
+      { name: 'Used', data: usedSeries },
+      { name: 'Unused', data: unusedSeries }
     ]
   };
 };

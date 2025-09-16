@@ -94,7 +94,7 @@
 // export default ProductList;
 
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col  , Spinner} from 'react-bootstrap';
+import { Container, Row, Col, Spinner } from 'react-bootstrap';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
 import ProductCard from './ProductCard';
@@ -148,7 +148,7 @@ const ProductList = () => {
     fetchProducts();
   }, [navigate]);
 
-   if (loading)
+  if (loading)
     return (
       <div className="d-flex justify-content-center align-items-center vh-100">
         <div className="text-center">

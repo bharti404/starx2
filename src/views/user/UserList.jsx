@@ -127,8 +127,8 @@
 // export default UserList;
 
 import React, { useEffect, useState } from 'react';
-import { Table, Container , Spinner} from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
+import { Table, Container, Spinner } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
 const UserList = () => {
@@ -168,7 +168,7 @@ const UserList = () => {
 
         if (response.ok) {
           setUsers(data.result || []);
-          console.log('user', data);
+          console.log('userii', data);
         } else {
           setError(data.message || 'Failed to fetch users');
         }
@@ -182,15 +182,15 @@ const UserList = () => {
     fetchUsers();
   }, [navigate]);
 
-   if (loading)
-      return (
-        <div className="d-flex justify-content-center align-items-center vh-100">
-          <div className="text-center">
-            <Spinner animation="border" variant="primary" role="status" style={{ width: '4rem', height: '4rem' }} />
-            <p className="mt-3 fw-bold text-primary">Loading User...</p>
-          </div>
+  if (loading)
+    return (
+      <div className="d-flex justify-content-center align-items-center vh-100">
+        <div className="text-center">
+          <Spinner animation="border" variant="primary" role="status" style={{ width: '4rem', height: '4rem' }} />
+          <p className="mt-3 fw-bold text-primary">Loading User...</p>
         </div>
-      );
+      </div>
+    );
   if (error) return <p style={{ color: 'red' }}>{error}</p>;
 
   return (
@@ -202,8 +202,10 @@ const UserList = () => {
               <th>Name</th>
               <th>Email</th>
               <th>Phone</th>
-              <th className="text-end">Wallet Balance</th>
-              <th className="text-end">User Detail</th>
+              <th className="text-end">Created Date</th>
+              {/* <th className="text-end">Wallet Balance</th> */}
+
+              {/* <th className="text-end">User Detail</th> */}
             </tr>
           </thead>
           <tbody>
@@ -212,12 +214,13 @@ const UserList = () => {
                 <td className="fw-bold">{user.name}</td>
                 <td>{user.email}</td>
                 <td>{user.phone}</td>
-                <td className="text-end fw-bold">404</td>
-                <td className="text-end">
-                  <Link to={`/app/user/${user.id}`} className="btn btn-sm btn-outline-primary">
+                <td>{new Date(user?.createdAt).toLocaleDateString()}</td>
+                {/* <td className="text-end fw-bold">404</td> */}
+                {/* <td className="text-end">
+                  <Link to={`/app/user/${user._id}`} className="btn btn-sm btn-outline-primary">
                     View
                   </Link>
-                </td>
+                </td> */}
               </tr>
             ))}
           </tbody>

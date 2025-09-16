@@ -166,7 +166,7 @@
 // bharti
 
 import { useState, useEffect } from 'react';
-import { Table, Container, Row, Col  , Spinner} from 'react-bootstrap';
+import { Table, Container, Row, Col, Spinner } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 
@@ -326,7 +326,7 @@ function TransationList() {
     fetchUsers();
   }, [navigate]);
 
-   if (loading)
+  if (loading)
     return (
       <div className="d-flex justify-content-center align-items-center vh-100">
         <div className="text-center">
@@ -346,7 +346,6 @@ function TransationList() {
               <thead className="table-dark">
                 <tr>
                   <th style={{ width: '15%' }}>QR Id</th>
-                 
 
                   <th className="text-center">Amount</th>
                   <th className="text-center">From Wallet</th>
@@ -361,7 +360,7 @@ function TransationList() {
                 {transaction.map((product, index) => (
                   <tr key={index}>
                     <td>{product._id}</td>
-                    
+
                     <td>{product.amount}</td>
                     <td>{product?.fromWallet?.ownerType}</td>
                     <td>{product?.toWallet?.ownerType}</td>
@@ -378,7 +377,7 @@ function TransationList() {
                         {product.status}
                       </span>
                     </td>
-                   <td>{new Date(product.payoutBatchDate).toLocaleDateString()}</td>
+                    <td>{new Date(product.payoutBatchDate).toLocaleDateString()}</td>
                     {/* <td>{product.payAt}</td> */}
                   </tr>
                 ))}

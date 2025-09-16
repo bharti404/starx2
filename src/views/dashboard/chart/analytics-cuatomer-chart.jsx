@@ -39,7 +39,6 @@
 // };
 // export default chartData;
 
-
 //bharti
 
 const chartData = (newUsers, oldUsers) => ({
@@ -64,4 +63,3 @@ const chartData = (newUsers, oldUsers) => ({
 });
 
 export default chartData;
-

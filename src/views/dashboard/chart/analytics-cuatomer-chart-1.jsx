@@ -1,4 +1,4 @@
-const chartData =(totalUsedQr ,totalUnusedQr)=> ({
+const chartData = (totalUsedQr, totalUnusedQr) => ({
   height: 150,
   type: 'donut',
   options: {
@@ -38,5 +38,3 @@ const chartData =(totalUsedQr ,totalUnusedQr)=> ({
   series: [totalUsedQr, totalUnusedQr]
 });
 export default chartData;
-
-
