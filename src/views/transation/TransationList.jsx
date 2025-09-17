@@ -348,7 +348,7 @@ function TransationList() {
                   <th style={{ width: '15%' }}>QR Id</th>
 
                   <th className="text-center">Amount</th>
-                  <th className="text-center">From Wallet</th>
+                  {/* <th className="text-center">From Wallet</th> */}
                   <th className="text-center">To Wallet</th>
                   <th className="text-center">status</th>
 
@@ -362,7 +362,7 @@ function TransationList() {
                     <td>{product._id}</td>
 
                     <td>{product.amount}</td>
-                    <td>{product?.fromWallet?.ownerType}</td>
+                    {/* <td>{product?.fromWallet?.ownerType}</td> */}
                     <td>{product?.toWallet?.ownerType}</td>
                     <td>
                       <span

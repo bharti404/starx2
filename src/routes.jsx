@@ -310,6 +310,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import AdminLayout from './layouts/AdminLayout';
 import ProtectedRoute from './components/protectedRoute/ProtectedRoute';
 import Loader from './components/Loader/Loader';
+import SellerList from 'views/Seller/SellerList';
 
 // Lazy load components
 const SignUp1 = lazy(() => import('./views/auth/signup/SignUp1'));
@@ -397,6 +398,16 @@ const renderRoutes = () => (
           <ProtectedRoute>
             <AdminLayout>
               <QRCodeList />
+            </AdminLayout>
+          </ProtectedRoute>
+        }
+      />
+       <Route
+        path="/app/seller/analytics"
+        element={
+          <ProtectedRoute>
+            <AdminLayout>
+              <SellerList/>
             </AdminLayout>
           </ProtectedRoute>
         }

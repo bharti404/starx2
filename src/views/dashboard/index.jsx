@@ -485,9 +485,9 @@ const DashAnalytics = () => {
                           <th>
                             <span>Amount</span>
                           </th>
-                          <th>
+                          {/* <th>
                             <span>From Wallet</span>
-                          </th>
+                          </th> */}
                           <th>
                             <span>To Wallet</span>
                           </th>
@@ -507,7 +507,7 @@ const DashAnalytics = () => {
                               <td>{tx.qrCode}</td>
 
                               <td>{tx.amount}</td>
-                              <td>{tx?.fromWallet?.ownerType}</td>
+                              {/* <td>{tx?.fromWallet?.ownerType}</td> */}
                               <td>{tx.toWallet?.ownerType}</td>
                               <td>{tx.status}</td>
                               <td>{new Date(tx.payoutBatchDate).toLocaleDateString()}</td>

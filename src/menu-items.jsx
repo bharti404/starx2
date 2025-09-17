@@ -18,28 +18,36 @@ const menuItems = {
           id: 'product',
           title: 'Product List',
           type: 'item',
-          icon: 'feather icon-home',
+          icon: "feather icon-list",
           url: '/app/product/analytics'
         },
         {
           id: 'user',
           title: 'User List',
           type: 'item',
-          icon: 'feather icon-home',
+          icon: 'feather icon-users',
           url: '/app/user/analytics'
+        },
+
+        {
+          id: 'seller',
+          title: 'Seller List',
+          type: 'item',
+          icon: 'feather icon-briefcase',
+          url: '/app/seller/analytics'
         },
         {
           id: 'transation',
           title: 'Transation Data',
           type: 'item',
-          icon: 'feather icon-home',
+          icon: 'feather icon-credit-card',
           url: '/app/transation/analytics'
         },
         {
           id: 'qr',
           title: 'QR-CODE Data',
           type: 'item',
-          icon: 'feather icon-home',
+          icon: 'feather icon-grid',
           url: '/app/qrcode/analytics'
         }
       ]
@@ -96,41 +104,41 @@ const menuItems = {
     //     }
     //   ]
     // },
-    {
-      id: 'auth',
-      title: 'Authentication',
-      type: 'group',
-      icon: 'icon-pages',
-      children: [
-        {
-          id: 'sign in',
-          title: 'Login',
-          type: 'item',
-          icon: 'feather icon-lock',
-          url: '/auth/signin-1',
-          target: true,
-          breadcrumbs: false
-        }
-        // {
-        //   id: 'sign Up',
-        //   title: 'Register',
-        //   type: 'item',
-        //   icon: 'feather icon-log-in',
-        //   url: '/auth/signup-1',
-        //   target: true,
-        //   breadcrumbs: false
-        // },
-        // {
-        //   id: 'reset-pass',
-        //   title: 'Reset Password',
-        //   type: 'item',
-        //   icon: 'feather icon-unlock',
-        //   url: '/auth/reset-password-1',
-        //   target: true,
-        //   breadcrumbs: false
-        // }
-      ]
-    }
+    // {
+    //   id: 'auth',
+    //   title: 'Authentication',
+    //   type: 'group',
+    //   icon: 'icon-pages',
+    //   children: [
+    //     {
+    //       id: 'sign in',
+    //       title: 'Login',
+    //       type: 'item',
+    //       icon: 'feather icon-lock',
+    //       url: '/auth/signin-1',
+    //       target: true,
+    //       breadcrumbs: false
+    //     }
+    //     // {
+    //     //   id: 'sign Up',
+    //     //   title: 'Register',
+    //     //   type: 'item',
+    //     //   icon: 'feather icon-log-in',
+    //     //   url: '/auth/signup-1',
+    //     //   target: true,
+    //     //   breadcrumbs: false
+    //     // },
+    //     // {
+    //     //   id: 'reset-pass',
+    //     //   title: 'Reset Password',
+    //     //   type: 'item',
+    //     //   icon: 'feather icon-unlock',
+    //     //   url: '/auth/reset-password-1',
+    //     //   target: true,
+    //     //   breadcrumbs: false
+    //     // }
+    //   ]
+    // }
     // {
     //   id: 'support',
     //   title: 'Support',

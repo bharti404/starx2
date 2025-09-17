@@ -4,7 +4,7 @@ import React from 'react';
 import { ListGroup } from 'react-bootstrap';
 
 // project import
-import NavSearch from './NavSearch';
+// import NavSearch from './NavSearch';
 
 // ==============================|| NAV LEFT ||============================== //
 
@@ -13,7 +13,7 @@ const NavLeft = () => {
     <React.Fragment>
       <ListGroup as="ul" bsPrefix=" " className="navbar-nav me-auto">
         <ListGroup.Item as="li" bsPrefix=" " className="nav-item">
-          <NavSearch />
+          {/* <NavSearch /> */}
         </ListGroup.Item>
       </ListGroup>
     </React.Fragment>
